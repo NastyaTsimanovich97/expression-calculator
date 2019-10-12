@@ -123,27 +123,27 @@ describe("Easy", function() {
     });
 });
 
-// describe("Medium", function() {
-//     it("Brackets must be paired", function() {
-//         const expr = "1 + 2) * 3";
-//         expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
-//     });
+describe("Medium", function() {
+    it("Brackets must be paired", function() {
+        const expr = "1 + 2) * 3";
+        expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
+    });
 
-//     it("Brackets must be paired", function() {
-//         const expr = "((1 + 2) * 3";
-//         expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
-//     });
+    it("Brackets must be paired", function() {
+        const expr = "((1 + 2) * 3";
+        expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
+    });
 
-//     it("Brackets must be paired", function() {
-//         const expr = "((1 + 2 * 3";
-//         expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
-//     });
+    it("Brackets must be paired", function() {
+        const expr = "((1 + 2 * 3";
+        expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
+    });
 
-//     it("Brackets test 1", function() {
-//         const expr = " 20 - 57 * 12 - (  58 + 84 * 32 / 27  ) ";
-//         const result = -821.5556;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    it("Brackets test 1", function() {
+        const expr = " 20 - 57 * 12 - (  58 + 84 * 32 / 27  ) ";
+        const result = -821.5556;
+        expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    });
     
 //     it("Brackets test 2", function() {
 //         const expr = " 77 + 79 / 25 * (  64 * 63 - 89 * 14  ) * 49 ";
@@ -439,4 +439,4 @@ describe("Easy", function() {
 //         const result = 72.6846;
 //         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
 //     });
-//})
+})
