@@ -25,6 +25,7 @@ function split(expr, operator){
         if(brackets==0 && operator==item){
             result.push(current);
             current="";
+            console.log(result);
         }else{
             current+=item;
         }
@@ -39,13 +40,14 @@ function split(expr, operator){
 };
 function divisionExpression(expr){
     const numbersString=split(expr,'/');
+    console.log(numbersString,'string');
     const numbers=numbersString.map( noStr => {
-        if (noStr[0]=='('){
+        if (noStr.match(/\(/)){
             const expression=noStr.substr(1,noStr.length-2);
             return plusExpression(expression);
         }
-        return +noStr;
-    });
+        else{return +noStr;}
+});
     console.log(numbers);
     for(let i=0;i<numbers.length;i++){
         if(numbers[i+1]==0){
