@@ -8,6 +8,20 @@ function eval() {
 
 function expressionCalculator(expr) {
     // write your solution here
+    
+    let brackets=0;
+    for(let i=0;i<expr.length;++i){
+        const item=expr[i];
+        if (item=='('){
+            brackets++;
+        }
+        else if (item==')'){
+            brackets--;
+        }
+    }
+    if(brackets!=0){
+        throw new TypeError('ExpressionError: Brackets must be paired');
+    }
    return plusExpression(expr);
 }
 function split(expr, operator){
@@ -25,13 +39,9 @@ function split(expr, operator){
         if(brackets==0 && operator==item){
             result.push(current);
             current="";
-            console.log(result);
         }else{
             current+=item;
         }
-    }
-    if(brackets!=0){
-        throw new TypeError('ExpressionError: Brackets must be paired');
     }
     if(current!=""){
         result.push(current);
@@ -40,15 +50,24 @@ function split(expr, operator){
 };
 function divisionExpression(expr){
     const numbersString=split(expr,'/');
-    console.log(numbersString,'string');
     const numbers=numbersString.map( noStr => {
         if (noStr.match(/\(/)){
-            const expression=noStr.substr(1,noStr.length-2);
-            return plusExpression(expression);
+            console.log(noStr);
+            const expression=noStr.slice(2,noStr.length-2);
+            console.log(expression);
+            if(expression.match(/\(/)){
+                console.log('more than 1')
+                const expression1=expression.substr(1,expression.length-2);
+                console.log(expression1);
+                return plusExpression(expression1);
+            }
+            else return plusExpression(expression);
         }
-        else{return +noStr;}
+        {return +noStr;}
 });
-    console.log(numbers);
+    for(let i=0;i<numbersString.length;i++){
+
+    }
     for(let i=0;i<numbers.length;i++){
         if(numbers[i+1]==0){
             throw new TypeError('TypeError: Division by zero.');
@@ -59,8 +78,7 @@ function divisionExpression(expr){
 }
 function multiplyExpression(expr){
     const numbersString=split(expr,'*');
-    const numbers=numbersString.map( noStr => divisionExpression(noStr));
-    console.log(numbers);
+    const numbers=numbersString.map( noStr => divisionExpression(noStr));;
     const count=1.0;
     const result=numbers.reduce((acc,no)=>acc*no,count);
     return result;
@@ -78,7 +96,7 @@ function plusExpression(expr){
     const numbers=numbersString.map( noStr => minusExpression(noStr));
     const count=0.0;
     const result=numbers.reduce((acc,no)=>acc+no,count);
-    console.log(result);
+    console.log(result)
     return result;
 };
 
